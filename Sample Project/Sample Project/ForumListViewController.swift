@@ -10,28 +10,17 @@ import UIKit
 
 class ForumListViewController: UITableViewController {
     
-    var forumService: ForumService!
     var forums = [Forum]()
     
-    required init!(coder aDecoder: NSCoder!) {
-        super.init(coder: aDecoder)
-        
-        // Fill in your forum details here
-        let apiURL = NSURL(string: "http://www.example.com/forum/api.php")
-        let apiKey = "YOUR_API_KEY"
-        
-        forumService = VBulletinForumService(apiURL: apiURL!, apiKey: apiKey)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        forumService.listForums({ (forums) -> () in
-            self.forums = forums
-            self.tableView.reloadData()
-        }, failure: { (error) -> () in
-            println(error)
-        })
+    var forumService: ForumService! {
+        didSet {
+            forumService.listForums({ (forums) -> () in
+                self.forums = forums
+                self.tableView.reloadData()
+                }, failure: { (error) -> () in
+                    println(error)
+            })
+        }
     }
 }
 
