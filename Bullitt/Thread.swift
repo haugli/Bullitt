@@ -7,16 +7,16 @@
 
 import SwiftyJSON
 
-final class Thread: ResponseObjectSerializable {
+public final class Thread: ResponseObjectSerializable {
     
-    let identifier: String
-    let title: String
-    let lastPostDate: NSDate
+    public let identifier: String
+    public let title: String
+    public let lastPostDate: NSDate
     
-    weak var forum: Forum?
-    var posts: [Post] = []
+    public weak var forum: Forum?
+    public var posts: [Post] = []
     
-    required init(response: NSHTTPURLResponse, json: JSON) {
+    required public init(response: NSHTTPURLResponse, json: JSON) {
         self.identifier = json["threadid"].stringValue
         
         let escapedTitle = json["threadtitle"].stringValue
@@ -32,7 +32,7 @@ final class Thread: ResponseObjectSerializable {
 
 extension Thread: ResponseCollectionSerializable {
     
-    class func collection(#response: NSHTTPURLResponse, json: JSON) -> [Thread] {
+    public class func collection(#response: NSHTTPURLResponse, json: JSON) -> [Thread] {
         var threads: [Thread] = []
         
         for threadJSON in json.arrayValue {

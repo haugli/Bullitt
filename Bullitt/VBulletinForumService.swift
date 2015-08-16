@@ -19,7 +19,7 @@ private enum ErrorCode: Int {
     case InvalidResponse = 100
 }
 
-class VBulletinForumService {
+public class VBulletinForumService {
     
     private let manager: Alamofire.Manager
     private let apiURL: NSURL
@@ -41,7 +41,7 @@ class VBulletinForumService {
     
     private var apiInfo: APIInfo!
     
-    init(apiURL: NSURL, apiKey: String) {
+    public init(apiURL: NSURL, apiKey: String) {
         self.apiURL = apiURL
         self.apiKey = apiKey
         
@@ -59,11 +59,11 @@ class VBulletinForumService {
 
 extension VBulletinForumService: ForumService {
     
-    func listForums(success: (forums: [Forum]) -> (), failure: (error: NSError) -> ()) {
+    public func listForums(success: (forums: [Forum]) -> (), failure: (error: NSError) -> ()) {
         generateAPIParameters("api_forumlist", parameters: nil, success: { (apiParameters) -> () in
             manager.request(.GET, self.apiURL, parameters: apiParameters)
                    .responseCollection { (_, _, forums: [Forum]?, error: NSError?) in
-                    if error != nil {
+                    if error == nil {
                         success(forums: forums ?? [])
                     } else {
                         failure(error: error!)
@@ -74,7 +74,7 @@ extension VBulletinForumService: ForumService {
         })
     }
     
-    func loadThreads(forum: Forum, perPage: Int, pageNumber: Int, success: (threads: [Thread]) -> (), failure: (error: NSError) -> ()) {
+    public func loadThreads(forum: Forum, perPage: Int, pageNumber: Int, success: (threads: [Thread]) -> (), failure: (error: NSError) -> ()) {
         let parameters: [String: AnyObject] = [
             "forumid": forum.identifier,
             "perpage": perPage,
@@ -95,7 +95,7 @@ extension VBulletinForumService: ForumService {
         })
     }
     
-    func loadPosts(thread: Thread, pageNumber: Int, success: (posts: [Post]) -> (), failure: (error: NSError) -> ()) {
+    public func loadPosts(thread: Thread, pageNumber: Int, success: (posts: [Post]) -> (), failure: (error: NSError) -> ()) {
         let parameters : [String: AnyObject] = [
             "threadid": thread.identifier,
             "pagenumber": pageNumber
@@ -146,7 +146,7 @@ extension VBulletinForumService {
         let currentDevice = UIDevice.currentDevice()
         let parameters = [
             "api_m": "api_init",
-            "clientname": infoDictionary["CFBundleDisplayName"] as! NSString,
+            "clientname": infoDictionary["CFBundleName"] as! NSString,
             "clientversion": infoDictionary["CFBundleShortVersionString"] as! NSString,
             "platformname": currentDevice.model,
             "platformversion": currentDevice.systemVersion,
@@ -159,7 +159,6 @@ extension VBulletinForumService {
                     failure(error: error)
                 } else {
                     if let responseDictionary = json as? [String: AnyObject] {
-                        println(responseDictionary)
                         var token = responseDictionary["apiaccesstoken"] as? NSString
                         var clientId = responseDictionary["apiclientid"] as? NSString
                         var apiVersion = responseDictionary["apiversion"] as AnyObject? as? Int

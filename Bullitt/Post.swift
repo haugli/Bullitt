@@ -7,16 +7,16 @@
 
 import SwiftyJSON
 
-final class Post: ResponseObjectSerializable {
+public final class Post: ResponseObjectSerializable {
     
-    let identifier: String
-    let messageBBCode: String
-    let username: String
-    let date: NSDate
+    public let identifier: String
+    public let messageBBCode: String
+    public let username: String
+    public let date: NSDate
     
-    weak var thread: Thread?
+    public weak var thread: Thread?
     
-    required init(response: NSHTTPURLResponse, json: JSON) {
+    required public init(response: NSHTTPURLResponse, json: JSON) {
         self.identifier = json["postid"].stringValue
         self.messageBBCode = json["message_bbcode"].stringValue
         self.username = json["username"].stringValue
@@ -30,7 +30,7 @@ final class Post: ResponseObjectSerializable {
 
 extension Post: ResponseCollectionSerializable {
     
-    class func collection(#response: NSHTTPURLResponse, json: JSON) -> [Post] {
+    public class func collection(#response: NSHTTPURLResponse, json: JSON) -> [Post] {
         var posts: [Post] = []
         
         for postJSON in json.arrayValue {

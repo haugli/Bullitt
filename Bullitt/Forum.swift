@@ -7,17 +7,17 @@
 
 import SwiftyJSON
 
-final class Forum: ResponseObjectSerializable {
+public final class Forum: ResponseObjectSerializable {
     
-    let identifier: String
-    let title: String
-    let isCategory: Bool
+    public let identifier: String
+    public let title: String
+    public let isCategory: Bool
     
-    weak var superforum: Forum?
-    var subforums: [Forum] = []
-    var threads: [Thread] = []
+    public weak var superforum: Forum?
+    public var subforums: [Forum] = []
+    public var threads: [Thread] = []
     
-    required init(response: NSHTTPURLResponse, json: JSON) {
+    required public init(response: NSHTTPURLResponse, json: JSON) {
         self.identifier = json["forumid"].stringValue
         self.isCategory = json["is_category"].boolValue
         
@@ -36,7 +36,7 @@ final class Forum: ResponseObjectSerializable {
 
 extension Forum: ResponseCollectionSerializable {
     
-    class func collection(#response: NSHTTPURLResponse, json: JSON) -> [Forum] {
+    public class func collection(#response: NSHTTPURLResponse, json: JSON) -> [Forum] {
         var forums: [Forum] = []
         
         for forumJSON in json.arrayValue {

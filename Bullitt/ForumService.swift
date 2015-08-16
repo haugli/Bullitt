@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ForumService {
+public protocol ForumService {
     
     /**
     Fetches the list of forums, including all subforums.
