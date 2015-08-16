@@ -62,7 +62,7 @@ extension VBulletinForumService: ForumService {
             "pagenumber": pageNumber
         ]
         
-        generateAPIParameters("forumdisplay", parameters: nil, success: { (apiParameters) -> () in
+        generateAPIParameters("forumdisplay", parameters: parameters, success: { (apiParameters) -> () in
             manager.request(.GET, self.apiURL, parameters: apiParameters)
                    .responseCollection { (_, _, threads: [Thread]?, error: NSError?) in
                     if let error = error {
@@ -72,7 +72,7 @@ extension VBulletinForumService: ForumService {
                     }
             }
         }, failure: { (error) -> () in
-                failure(error: error)
+            failure(error: error)
         })
     }
     
@@ -82,7 +82,7 @@ extension VBulletinForumService: ForumService {
             "pagenumber": pageNumber
         ]
         
-        generateAPIParameters("showthread", parameters: nil, success: { (apiParameters) -> () in
+        generateAPIParameters("showthread", parameters: parameters, success: { (apiParameters) -> () in
             manager.request(.GET, self.apiURL, parameters: apiParameters)
                    .responseCollection { (_, _, posts: [Post]?, error: NSError?) in
                     if let error = error {
@@ -91,8 +91,8 @@ extension VBulletinForumService: ForumService {
                         success(posts: posts ?? [])
                     }
                 }
-            }, failure: { (error) -> () in
-                failure(error: error)
+        }, failure: { (error) -> () in
+            failure(error: error)
         })
     }
 }

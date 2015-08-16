@@ -8,22 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		83407AB51B80219E00F1F343 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83407AB41B80219E00F1F343 /* AppDelegate.swift */; };
-		83407AB71B80219E00F1F343 /* ForumListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83407AB61B80219E00F1F343 /* ForumListViewController.swift */; };
+		83407AB71B80219E00F1F343 /* ForumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83407AB61B80219E00F1F343 /* ForumViewController.swift */; };
 		83407ABA1B80219E00F1F343 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83407AB81B80219E00F1F343 /* Main.storyboard */; };
 		83407ABC1B80219E00F1F343 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83407ABB1B80219E00F1F343 /* Images.xcassets */; };
 		83407ABF1B80219E00F1F343 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83407ABD1B80219E00F1F343 /* LaunchScreen.xib */; };
 		83407AE01B80636A00F1F343 /* Bullitt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83407ADF1B80636A00F1F343 /* Bullitt.framework */; };
+		83407AED1B8123D400F1F343 /* ThreadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83407AEC1B8123D400F1F343 /* ThreadViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		83407AAF1B80219E00F1F343 /* Sample Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sample Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83407AB31B80219E00F1F343 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83407AB41B80219E00F1F343 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		83407AB61B80219E00F1F343 /* ForumListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumListViewController.swift; sourceTree = "<group>"; };
+		83407AB61B80219E00F1F343 /* ForumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumViewController.swift; sourceTree = "<group>"; };
 		83407AB91B80219E00F1F343 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		83407ABB1B80219E00F1F343 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		83407ABE1B80219E00F1F343 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		83407ADF1B80636A00F1F343 /* Bullitt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bullitt.framework; path = "../../build/Debug-iphoneos/Bullitt.framework"; sourceTree = "<group>"; };
+		83407AEC1B8123D400F1F343 /* ThreadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +60,8 @@
 			isa = PBXGroup;
 			children = (
 				83407AB41B80219E00F1F343 /* AppDelegate.swift */,
-				83407AB61B80219E00F1F343 /* ForumListViewController.swift */,
+				83407AB61B80219E00F1F343 /* ForumViewController.swift */,
+				83407AEC1B8123D400F1F343 /* ThreadViewController.swift */,
 				83407AB81B80219E00F1F343 /* Main.storyboard */,
 				83407ABB1B80219E00F1F343 /* Images.xcassets */,
 				83407ABD1B80219E00F1F343 /* LaunchScreen.xib */,
@@ -154,8 +157,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83407AB71B80219E00F1F343 /* ForumListViewController.swift in Sources */,
+				83407AB71B80219E00F1F343 /* ForumViewController.swift in Sources */,
 				83407AB51B80219E00F1F343 /* AppDelegate.swift in Sources */,
+				83407AED1B8123D400F1F343 /* ThreadViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

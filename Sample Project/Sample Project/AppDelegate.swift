@@ -11,21 +11,31 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    /********************************************************
+    * Fill in your forum details below                     *
+    ********************************************************/
+    let apiURL = "http://www.example.com/forum/api.php"
+    let apiKey = "YOUR_API_KEY"
+    /********************************************************/
+    
     var window: UIWindow?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
-        
-        // Fill in your forum details here
-        let apiURL = "http://www.example.com/forum/api.php"
-        let apiKey = "YOUR_API_KEY"
-        
         if let navigationController = window?.rootViewController as? UINavigationController {
-            if let forumListViewController = navigationController.topViewController as? ForumListViewController {
+            if let forumListViewController = navigationController.topViewController as? ForumViewController {
                 let forumService = VBulletinForumService(apiURL: NSURL(string: apiURL)!, apiKey: apiKey)
                 forumListViewController.forumService = forumService
             }
         }
         
         return true
+    }
+    
+    func applicationDidBecomeActive(application: UIApplication) {
+        if apiKey == "YOUR_API_KEY" {
+            let alertController = UIAlertController(title: "Setup Required", message: "Please fill in your API URL and key in AppDelegate.swift.", preferredStyle: .Alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            window?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
+        }
     }
 }

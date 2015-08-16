@@ -7,7 +7,7 @@
         <!--Forum List-->
         <scene sceneID="hEN-fP-lQM">
             <objects>
-                <tableViewController id="pgl-9j-bz7" customClass="ForumListViewController" customModule="Sample_Project" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="pgl-9j-bz7" customClass="ForumViewController" customModule="Sample_Project" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="4Eg-r2-yBT">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -34,10 +34,77 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Forum List" id="ZxW-b4-rZS"/>
+                    <connections>
+                        <segue destination="SKh-hi-DjX" kind="show" identifier="selectThread" id="zsN-uR-r6e"/>
+                        <segue destination="02m-NK-res" kind="show" identifier="showForum" id="tdY-OJ-cIJ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ccx-d3-hzo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="854" y="-86"/>
+        </scene>
+        <!--Forum View Controller-->
+        <scene sceneID="C7v-9P-vYU">
+            <objects>
+                <tableViewController id="02m-NK-res" customClass="ForumViewController" customModule="Sample_Project" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="3yL-CV-0E2">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ForumCell" id="rNL-fb-fSX">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rNL-fb-fSX" id="sJY-xS-YML">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="02m-NK-res" id="8lf-6k-Vr2"/>
+                            <outlet property="delegate" destination="02m-NK-res" id="BbA-Pw-cTG"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="SKh-hi-DjX" kind="show" identifier="showThread" id="sWP-jg-rbT"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NlD-L0-XTh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1680" y="-777"/>
+        </scene>
+        <!--Thread View Controller-->
+        <scene sceneID="VKu-Nf-xfj">
+            <objects>
+                <tableViewController id="SKh-hi-DjX" customClass="ThreadViewController" customModule="Sample_Project" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="AcX-Pt-62K">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ThreadCell" textLabel="GWt-yY-lnL" style="IBUITableViewCellStyleDefault" id="wyS-l0-Y38">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wyS-l0-Y38" id="HYo-CT-Dja">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GWt-yY-lnL">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="SKh-hi-DjX" id="fFA-Cc-YIP"/>
+                            <outlet property="delegate" destination="SKh-hi-DjX" id="gSZ-di-Zxx"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tfa-xX-VoO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1680" y="-86"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yxM-J5-tZY">
@@ -56,4 +123,7 @@
             <point key="canvasLocation" x="40" y="-86"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="sWP-jg-rbT"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -34,8 +34,9 @@ extension Thread: ResponseCollectionSerializable {
     
     public class func collection(#response: NSHTTPURLResponse, json: JSON) -> [Thread] {
         var threads: [Thread] = []
+        let threadBits = json["response"]["threadbits"]
         
-        for threadJSON in json.arrayValue {
+        for threadJSON in threadBits.arrayValue {
             if let thread = Thread(response: response, json: threadJSON["thread"]) {
                 threads.append(thread)
             }
