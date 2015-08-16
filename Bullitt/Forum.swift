@@ -17,7 +17,7 @@ public final class Forum: ResponseObjectSerializable {
     public var subforums: [Forum] = []
     public var threads: [Thread] = []
     
-    required public init(response: NSHTTPURLResponse, json: JSON) {
+    required public init?(response: NSHTTPURLResponse, json: JSON) {
         self.identifier = json["forumid"].stringValue
         self.isCategory = json["is_category"].boolValue
         
@@ -40,8 +40,9 @@ extension Forum: ResponseCollectionSerializable {
         var forums: [Forum] = []
         
         for forumJSON in json.arrayValue {
-            let forum = Forum(response: response, json: forumJSON)
-            forums.append(forum)
+            if let forum = Forum(response: response, json: forumJSON) {
+                forums.append(forum)
+            }
         }
         
         return forums

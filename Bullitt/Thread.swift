@@ -16,7 +16,7 @@ public final class Thread: ResponseObjectSerializable {
     public weak var forum: Forum?
     public var posts: [Post] = []
     
-    required public init(response: NSHTTPURLResponse, json: JSON) {
+    required public init?(response: NSHTTPURLResponse, json: JSON) {
         self.identifier = json["threadid"].stringValue
         
         let escapedTitle = json["threadtitle"].stringValue
@@ -36,8 +36,9 @@ extension Thread: ResponseCollectionSerializable {
         var threads: [Thread] = []
         
         for threadJSON in json.arrayValue {
-            let thread = Thread(response: response, json: threadJSON["thread"])
-            threads.append(thread)
+            if let thread = Thread(response: response, json: threadJSON["thread"]) {
+                threads.append(thread)
+            }
         }
         
         return threads

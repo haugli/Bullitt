@@ -9,7 +9,7 @@ import Alamofire
 import SwiftyJSON
 
 public protocol ResponseObjectSerializable {
-    init(response: NSHTTPURLResponse, json: JSON)
+    init?(response: NSHTTPURLResponse, json: JSON)
 }
 
 extension Request {

@@ -6,47 +6,28 @@
 //
 
 import Alamofire
-import SwiftyJSON
-
-private struct APIInfo {
-    let token: String
-    let clientId: String
-    let apiVersion: Int
-    let secret: String
-}
-
-private enum ErrorCode: Int {
-    case InvalidResponse = 100
-}
 
 public class VBulletinForumService {
     
     private let manager: Alamofire.Manager
     private let apiURL: NSURL
     private let apiKey: String
-    
-    private class var errorDomain: String {
-        let infoDictionary = NSBundle.mainBundle().infoDictionary!
+    private var apiInfo: VBulletinAPIInfo!
         
-        return infoDictionary["CFBundleIdentifier"] as! String
-    }
-    
-    private class var defaultUserAgent: String {
+    private class var userAgent: String {
         let infoDictionary = NSBundle.mainBundle().infoDictionary!
-        let bundleName = infoDictionary["CFBundleName"] as! String
-        let shortVersionString = infoDictionary["CFBundleShortVersionString"] as! String
+        let bundleName = infoDictionary["CFBundleName"] as? String ?? "Bullitt"
+        let shortVersionString = infoDictionary["CFBundleShortVersionString"] as? String ?? "1.0"
         
         return bundleName + "/" + shortVersionString
     }
-    
-    private var apiInfo: APIInfo!
     
     public init(apiURL: NSURL, apiKey: String) {
         self.apiURL = apiURL
         self.apiKey = apiKey
         
         var defaultHeaders = Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders ?? [:]
-        defaultHeaders["User-Agent"] = VBulletinForumService.defaultUserAgent
+        defaultHeaders["User-Agent"] = VBulletinForumService.userAgent
         
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
         configuration.HTTPAdditionalHeaders = defaultHeaders
@@ -63,10 +44,10 @@ extension VBulletinForumService: ForumService {
         generateAPIParameters("api_forumlist", parameters: nil, success: { (apiParameters) -> () in
             manager.request(.GET, self.apiURL, parameters: apiParameters)
                    .responseCollection { (_, _, forums: [Forum]?, error: NSError?) in
-                    if error == nil {
-                        success(forums: forums ?? [])
+                    if let error = error {
+                        failure(error: error)
                     } else {
-                        failure(error: error!)
+                        success(forums: forums ?? [])
                     }
             }
         }, failure: { (error) -> () in
@@ -84,10 +65,10 @@ extension VBulletinForumService: ForumService {
         generateAPIParameters("forumdisplay", parameters: nil, success: { (apiParameters) -> () in
             manager.request(.GET, self.apiURL, parameters: apiParameters)
                    .responseCollection { (_, _, threads: [Thread]?, error: NSError?) in
-                    if error != nil {
-                        success(threads: threads ?? [])
+                    if let error = error {
+                        failure(error: error)
                     } else {
-                        failure(error: error!)
+                        success(threads: threads ?? [])
                     }
             }
         }, failure: { (error) -> () in
@@ -104,10 +85,10 @@ extension VBulletinForumService: ForumService {
         generateAPIParameters("showthread", parameters: nil, success: { (apiParameters) -> () in
             manager.request(.GET, self.apiURL, parameters: apiParameters)
                    .responseCollection { (_, _, posts: [Post]?, error: NSError?) in
-                    if error != nil {
-                        success(posts: posts ?? [])
+                    if let error = error {
+                        failure(error: error)
                     } else {
-                        failure(error: error!)
+                        success(posts: posts ?? [])
                     }
                 }
             }, failure: { (error) -> () in
@@ -154,24 +135,19 @@ extension VBulletinForumService {
         ]
         
         manager.request(.GET, apiURL, parameters: parameters)
-               .responseJSON { _, _, json, error in
-                if let error = error {
-                    failure(error: error)
+               .responseObject { (_, _, apiInfo: VBulletinAPIInfo?, error: NSError?) in
+                if let apiInfo = apiInfo {
+                    self.apiInfo = apiInfo
+                    success()
                 } else {
-                    if let responseDictionary = json as? [String: AnyObject] {
-                        var token = responseDictionary["apiaccesstoken"] as? NSString
-                        var clientId = responseDictionary["apiclientid"] as? NSString
-                        var apiVersion = responseDictionary["apiversion"] as AnyObject? as? Int
-                        var secret = responseDictionary["secret"] as? NSString
-                        
-                        if token != nil && clientId != nil && apiVersion != nil && secret != nil {
-                            self.apiInfo = APIInfo(token: token! as String, clientId: clientId! as String, apiVersion: apiVersion!, secret: secret! as String)
-                            success()
-                        } else {
-                            let error = NSError(domain: VBulletinForumService.errorDomain, code: ErrorCode.InvalidResponse.rawValue, userInfo: nil)
-                            failure(error: error)
-                        }
+                    let actualError: NSError
+                    if let error = error {
+                        actualError = error
+                    } else {
+                        actualError = NSError(domain: VBulletinError.domain, code: VBulletinError.APIInitializationFailure.rawValue, userInfo: nil)
                     }
+                    
+                    failure(error: actualError)
                 }
         }
     }

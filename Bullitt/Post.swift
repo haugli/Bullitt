@@ -16,7 +16,7 @@ public final class Post: ResponseObjectSerializable {
     
     public weak var thread: Thread?
     
-    required public init(response: NSHTTPURLResponse, json: JSON) {
+    required public init?(response: NSHTTPURLResponse, json: JSON) {
         self.identifier = json["postid"].stringValue
         self.messageBBCode = json["message_bbcode"].stringValue
         self.username = json["username"].stringValue
@@ -34,8 +34,9 @@ extension Post: ResponseCollectionSerializable {
         var posts: [Post] = []
         
         for postJSON in json.arrayValue {
-            let post = Post(response: response, json: postJSON["post"])
-            posts.append(post)
+            if let post = Post(response: response, json: postJSON["post"]) {
+                posts.append(post)
+            }
         }
         
         return posts

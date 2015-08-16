@@ -17,10 +17,10 @@ class ForumListViewController: UITableViewController {
         super.init(coder: aDecoder)
         
         // Fill in your forum details here
-        let apiURL = NSURL(string: "http://www.example.com/forum/api.php")!
+        let apiURL = NSURL(string: "http://www.example.com/forum/api.php")
         let apiKey = "YOUR_API_KEY"
         
-        forumService = VBulletinForumService(apiURL: apiURL, apiKey: apiKey)
+        forumService = VBulletinForumService(apiURL: apiURL!, apiKey: apiKey)
     }
     
     override func viewDidLoad() {

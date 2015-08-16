@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0E00DA32CAFE52DAF1C57AB8 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60E150B17922CEE96969322C /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		83407AE91B80EB5100F1F343 /* VBulletinAPIInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83407AE81B80EB5100F1F343 /* VBulletinAPIInfo.swift */; };
+		83407AEB1B80F24100F1F343 /* VBulletinError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83407AEA1B80F24100F1F343 /* VBulletinError.swift */; };
 		83E8DF7B1B786D8F008A5726 /* Bullitt.h in Headers */ = {isa = PBXBuildFile; fileRef = 83E8DF7A1B786D8F008A5726 /* Bullitt.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		83E8DF811B786D8F008A5726 /* Bullitt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83E8DF751B786D8F008A5726 /* Bullitt.framework */; };
 		83E8DF881B786D8F008A5726 /* BullittTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E8DF871B786D8F008A5726 /* BullittTests.swift */; };
@@ -34,6 +36,8 @@
 /* Begin PBXFileReference section */
 		027376975A929E0C10873349 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		60E150B17922CEE96969322C /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		83407AE81B80EB5100F1F343 /* VBulletinAPIInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VBulletinAPIInfo.swift; sourceTree = "<group>"; };
+		83407AEA1B80F24100F1F343 /* VBulletinError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VBulletinError.swift; sourceTree = "<group>"; };
 		83E8DF751B786D8F008A5726 /* Bullitt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Bullitt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		83E8DF791B786D8F008A5726 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83E8DF7A1B786D8F008A5726 /* Bullitt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bullitt.h; sourceTree = "<group>"; };
@@ -77,6 +81,16 @@
 				60E150B17922CEE96969322C /* Pods.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		83407AE71B80EB3900F1F343 /* VBulletin */ = {
+			isa = PBXGroup;
+			children = (
+				83E8DF9B1B786F4C008A5726 /* VBulletinForumService.swift */,
+				83407AE81B80EB5100F1F343 /* VBulletinAPIInfo.swift */,
+				83407AEA1B80F24100F1F343 /* VBulletinError.swift */,
+			);
+			name = VBulletin;
 			sourceTree = "<group>";
 		};
 		83E8DF6B1B786D8F008A5726 = {
@@ -140,8 +154,8 @@
 		83E8DF911B786E7C008A5726 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				83407AE71B80EB3900F1F343 /* VBulletin */,
 				83E8DF921B786E8C008A5726 /* ForumService.swift */,
-				83E8DF9B1B786F4C008A5726 /* VBulletinForumService.swift */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -327,11 +341,13 @@
 				83E8DF931B786E8C008A5726 /* ForumService.swift in Sources */,
 				83E8DFCD1B79B5A7008A5726 /* ResponseCollectionSerializable.swift in Sources */,
 				83E8DF981B786EBD008A5726 /* Thread.swift in Sources */,
+				83407AEB1B80F24100F1F343 /* VBulletinError.swift in Sources */,
 				83E8DF961B786EAE008A5726 /* Forum.swift in Sources */,
 				83E8DF9F1B786FB5008A5726 /* String+MD5.swift in Sources */,
 				83E8DF9C1B786F4C008A5726 /* VBulletinForumService.swift in Sources */,
 				83E8DF9A1B786EC2008A5726 /* Post.swift in Sources */,
 				83E8DFCB1B79B582008A5726 /* ResponseObjectSerializable.swift in Sources */,
+				83407AE91B80EB5100F1F343 /* VBulletinAPIInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
