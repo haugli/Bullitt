@@ -26,6 +26,22 @@ class ThreadViewController: UITableViewController {
             loadThreadsIfNeeded()
         }
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let selectedIndexPath = tableView.indexPathForSelectedRow(), segueIdentifier = segue.identifier {
+            let selectedThread = threads[selectedIndexPath.row]
+            
+            switch segueIdentifier {
+                case "showPost":
+                    if let postViewController = segue.destinationViewController as? PostViewController {
+                        postViewController.thread = selectedThread
+                        postViewController.forumService = forumService
+                    }
+                default:
+                    break
+            }
+        }
+    }
 }
 
 // MARK:- UITableViewDataSource
@@ -43,6 +59,16 @@ extension ThreadViewController: UITableViewDataSource {
         cell.textLabel!.text = thread.title
         
         return cell
+    }
+}
+
+// MARK:- UITableViewDelegate
+
+extension ThreadViewController: UITableViewDelegate {
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let thread = threads[indexPath.row]
+        performSegueWithIdentifier("showPost", sender: self)
     }
 }
 

@@ -11,12 +11,12 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    /********************************************************
-    * Fill in your forum details below                     *
-    ********************************************************/
+    /**********************************************************
+     * Fill in your vBulletin mobile API configuration below: *
+     **********************************************************/
     let apiURL = "http://www.example.com/forum/api.php"
     let apiKey = "YOUR_API_KEY"
-    /********************************************************/
+    /**********************************************************/
     
     var window: UIWindow?
     
@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidBecomeActive(application: UIApplication) {
         if apiKey == "YOUR_API_KEY" {
-            let alertController = UIAlertController(title: "Setup Required", message: "Please fill in your API URL and key in AppDelegate.swift.", preferredStyle: .Alert)
+            let alertController = UIAlertController(title: "Setup Required", message: "Please fill in your vBulletin API configuration in AppDelegate.swift.", preferredStyle: .Alert)
             alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
             window?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
         }

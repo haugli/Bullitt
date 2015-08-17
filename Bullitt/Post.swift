@@ -32,8 +32,9 @@ extension Post: ResponseCollectionSerializable {
     
     public class func collection(#response: NSHTTPURLResponse, json: JSON) -> [Post] {
         var posts: [Post] = []
+        let postBits = json["response"]["postbits"]
         
-        for postJSON in json.arrayValue {
+        for postJSON in postBits.arrayValue {
             if let post = Post(response: response, json: postJSON["post"]) {
                 posts.append(post)
             }
