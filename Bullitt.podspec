@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
   s.social_media_url   = "http://twitter.com/haugli"
 
   s.platform     = :ios, "8.0"
-  s.deployment_target = "8.0"
+  s.ios.deployment_target = "8.0"
   
   s.source       = { :git => "https://github.com/haugli/Bullitt.git", :tag => "#{s.version}" }
   s.source_files  = "Bullitt/*.swift"
