@@ -281,7 +281,6 @@
 				INFOPLIST_FILE = "Sample Project/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "Sample Project";
-				SWIFT_INCLUDE_PATHS = ../CommonCrypto;
 			};
 			name = Debug;
 		};
@@ -296,7 +295,6 @@
 				INFOPLIST_FILE = "Sample Project/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "Sample Project";
-				SWIFT_INCLUDE_PATHS = ../CommonCrypto;
 			};
 			name = Release;
 		};
